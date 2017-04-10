@@ -6,6 +6,8 @@ import java.util.Arrays;
  * Calculator application
  */
 public class CalcApp {
+	double result = 0;
+	
 	public double calc(String[] tokens){
 		final Calculate cal = new Calculate();
 		cal.setInfix(tokens[0]);
@@ -13,13 +15,15 @@ public class CalcApp {
 		return cal.evalPostfix();
 	}
 	
-	public static void main(String[] args){
-		final CalcApp app = new CalcApp();
-		
+	public CalcApp(String sentence){
 		final StringBuilder outputs = new StringBuilder();
-		Arrays.asList(args).forEach(value -> outputs.append(value + " "));
+		Arrays.asList(sentence.split("")).forEach(value -> outputs.append(value + " "));
 		System.out.print("Addition of values: " + outputs + " = ");
 		
-		System.out.println(app.calc(args));
+		result = calc(sentence.split(""));
+	}
+	
+	public double getResult(){
+		return result;
 	}
 }
