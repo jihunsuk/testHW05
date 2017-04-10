@@ -11,7 +11,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Summoner {
-    private String name;
-    private int summonerLevel;
-    private int result;
+    private double result;
 }
