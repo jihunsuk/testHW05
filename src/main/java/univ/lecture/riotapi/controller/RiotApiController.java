@@ -49,6 +49,6 @@ public class RiotApiController {
         //int queriedLevel = (Integer)summonerDetail.get("summonerLevel");
         //Summoner summoner = new Summoner(queriedName, queriedLevel);
         
-        return result;
+        return 543;
     }
 }
