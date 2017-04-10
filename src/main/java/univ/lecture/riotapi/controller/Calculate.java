@@ -3,8 +3,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
-import univ.lecture.riotapi.model.Operator;
-
 public class Calculate {
     private Stack<Character> _oStack;
     private Stack<Double> _vStack;

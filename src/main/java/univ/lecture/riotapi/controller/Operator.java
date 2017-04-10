@@ -1,4 +1,4 @@
-package univ.lecture.riotapi.model;
+package univ.lecture.riotapi.controller;
 
 public enum Operator{
 	ADD('+'){
