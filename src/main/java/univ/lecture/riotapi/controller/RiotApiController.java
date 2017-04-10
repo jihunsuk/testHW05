@@ -31,8 +31,8 @@ public class RiotApiController {
     @Value("${riot.api.key}")
     private String riotApiKey;
 
-    @RequestMapping(value = "/summoner/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Summoner querySummoner(@PathVariable("name") String summonerName) throws UnsupportedEncodingException {
+    @RequestMapping(value = "/summoner/{name}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public int querySummoner(@PathVariable("name") String summonerName) throws UnsupportedEncodingException {
         final String url = riotApiEndpoint + "/summoner/by-name/" +
                 summonerName +
                 "?api_key=" +
@@ -46,8 +46,8 @@ public class RiotApiController {
         Map<String, Object> summonerDetail = (Map<String, Object>) parsedMap.values().toArray()[0];
         String queriedName = (String)summonerDetail.get("name");
         int queriedLevel = (Integer)summonerDetail.get("summonerLevel");
-        Summoner summoner = new Summoner("Test", 123);
+        Summoner summoner = new Summoner(queriedName, queriedLevel);
 
-        return summoner;
+        return 1;
     }
 }
