@@ -46,7 +46,7 @@ public class RiotApiController {
         Map<String, Object> summonerDetail = (Map<String, Object>) parsedMap.values().toArray()[0];
         String queriedName = (String)summonerDetail.get("name");
         int queriedLevel = (Integer)summonerDetail.get("summonerLevel");
-        Summoner summoner = new Summoner(queriedName, queriedLevel);
+        Summoner summoner = new Summoner("Test", 123);
 
         return summoner;
     }
