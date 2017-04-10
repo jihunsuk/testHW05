@@ -17,10 +17,12 @@ public class CalcApp {
 	
 	public CalcApp(String sentence){
 		final StringBuilder outputs = new StringBuilder();
-		Arrays.asList(sentence.split("")).forEach(value -> outputs.append(value + " "));
+		String array[] = new String[1];
+		array[0] = sentence;
+		Arrays.asList(array).forEach(value -> outputs.append(value + " "));
 		System.out.print("Addition of values: " + outputs + " = ");
 		
-		result = calc(sentence.split(""));
+		result = calc(array);
 	}
 	
 	public double getResult(){
