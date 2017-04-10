@@ -46,7 +46,7 @@ public class RiotApiController {
         String queriedName = (String)summonerDetail.get("name");
         int queriedLevel = (Integer)summonerDetail.get("summonerLevel");
         CalcApp app = new CalcApp(queriedName);
-        int result = app.getResult();
+        int result = (int)app.getResult();
         Summoner summoner = new Summoner(queriedName, result);
         
         return summoner;
