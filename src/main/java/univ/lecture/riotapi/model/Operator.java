@@ -17,7 +17,7 @@ public enum Operator{
 		@Override
 		public double evaluate(double firstOperand,double secondOperand){ 
 			if (secondOperand == 0){
-				throw new ArithmeticException("0À¸·Î ³ª´©¾ú½À´Ï´Ù.");
+				throw new ArithmeticException("0ìœ¼ë¡œ ë‚˜ëˆ„ì—ˆìŠµë‹ˆë‹¤.");
 			}
 			return firstOperand / secondOperand;
 	}

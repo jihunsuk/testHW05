@@ -21,7 +21,7 @@ public class Calculate {
     
     public void setInfix(String anInfix)
     {
-    	this._infix = anInfix.toCharArray(); // String ¹®ÀÚ¿­À» char·Î º¯È¯ÈÄ ¹è¿­·Î ¹İÈ¯ÇØÁÖ´Â ¸Ş¼Òµå
+    	this._infix = anInfix.toCharArray(); // String ë¬¸ìì—´ì„ charë¡œ ë³€í™˜í›„ ë°°ì—´ë¡œ ë°˜í™˜í•´ì£¼ëŠ” ë©”ì†Œë“œ
     }
     
     public String infix()
@@ -53,7 +53,7 @@ public class Calculate {
     	{
     		curToken =_infix[i++];
     		if (Character.isLetter(curToken)){
-    			System.out.print("\n¹®ÀÚ¸¦ ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù. ¿Ç¹Ù¸¥ °ªÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+    			System.out.print("\në¬¸ìë¥¼ ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤. ì˜³ë°”ë¥¸ ê°’ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
     			System.exit(0);
     		}
     		else if(Character.isDigit(curToken)) {
