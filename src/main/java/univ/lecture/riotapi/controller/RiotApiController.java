@@ -37,18 +37,18 @@ public class RiotApiController {
                 summonerName +
                 "?api_key=" +
                 riotApiKey;
-        CalcApp app = new CalcApp(summonerName);
+        String response = restTemplate.getForObject(url, String.class);
+        Map<String, Object> parsedMap = new JacksonJsonParser().parseMap(response);
+
+        parsedMap.forEach((key, value) -> log.info(String.format("key [%s] type [%s] value [%s]", key, value.getClass(), value)));
+
+        Map<String, Object> summonerDetail = (Map<String, Object>) parsedMap.values().toArray()[0];
+        String queriedName = (String)summonerDetail.get("name");
+        int queriedLevel = (Integer)summonerDetail.get("summonerLevel");
+        Summoner summoner = new Summoner("test", 123);
+        CalcApp app = new CalcApp(queriedName);
         double result = app.getResult();
-        //String response = restTemplate.getForObject(url, String.class);
-        //Map<String, Object> parsedMap = new JacksonJsonParser().parseMap(response);
-
-        //parsedMap.forEach((key, value) -> log.info(String.format("key [%s] type [%s] value [%s]", key, value.getClass(), value)));
-
-        //Map<String, Object> summonerDetail = (Map<String, Object>) parsedMap.values().toArray()[0];
-        //String queriedName = (String)summonerDetail.get("name");
-        //int queriedLevel = (Integer)summonerDetail.get("summonerLevel");
-        //Summoner summoner = new Summoner(queriedName, queriedLevel);
         
-        return 543;
+        return result;
     }
 }
