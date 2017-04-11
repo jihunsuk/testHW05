@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import ch.qos.logback.classic.Logger;
 import univ.lecture.riotapi.model.JSONResult;
 
 import java.io.UnsupportedEncodingException;
@@ -34,7 +36,7 @@ public class RiotApiController {
     @Value("${riot.api.key}")
     private String riotApiKey;
 
-    @RequestMapping(value = "/calc/{name}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/calc/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public JSONResult queryResult(@PathVariable("name") String expression) throws UnsupportedEncodingException {
         final String url = riotApiEndpoint + "/summoner/by-name/" +
         		expression +
@@ -44,6 +46,7 @@ public class RiotApiController {
         double mathResult;
         
         //String response = restTemplate.postForObject(url, null, String.class);
+        String response = restTemplate.getForObject(url, String.class);
         //Map<String, Object> parsedMap = new JacksonJsonParser().parseMap(response);
         //parsedMap.forEach((key, value) -> log.info(String.format("key [%s] type [%s] value [%s]", key, value.getClass(), value)));
         //Map<String, Object> summonerDetail = (Map<String, Object>) parsedMap.values().toArray()[0];
@@ -59,7 +62,7 @@ public class RiotApiController {
 		String strTime = dateFormat.format((Calendar.getInstance()).getTime());
 		long now = Long.parseLong(strTime);
 		
-		JSONResult result = new JSONResult(teamId, now, mathResult);
+		JSONResult result = new JSONResult(teamId, now, mathResult, response);
 
         return result;
     }
