@@ -27,7 +27,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/")
 @Log4j
-public class RiotApiController {
+public class ApiController {
     @Autowired
     private RestTemplate restTemplate;
 
