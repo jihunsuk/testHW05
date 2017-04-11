@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Result {
+public class JSONResult {
 	private int teamId;
 	private long now;
     private double result;

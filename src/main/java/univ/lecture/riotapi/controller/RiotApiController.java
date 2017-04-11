@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import univ.lecture.riotapi.model.Result;
+import univ.lecture.riotapi.model.JSONResult;
 
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
@@ -34,7 +34,7 @@ public class RiotApiController {
     private String riotApiKey;
 
     @RequestMapping(value = "/summoner/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Result queryResult(@PathVariable("name") String expression) throws UnsupportedEncodingException {
+    public JSONResult queryResult(@PathVariable("name") String expression) throws UnsupportedEncodingException {
         final String url = riotApiEndpoint + "/summoner/by-name/" +
         		expression +
                 "?api_key=" +
@@ -58,7 +58,7 @@ public class RiotApiController {
 		String str = dateFormat.format(System.currentTimeMillis());
 		long now = Long.parseLong(str);
 		
-        Result result = new result(teamId, now, mathResult);
+		JSONResult result = new JSONResult(teamId, now, mathResult);
 
         return result;
     }
