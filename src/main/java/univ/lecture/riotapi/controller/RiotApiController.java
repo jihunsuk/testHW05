@@ -15,6 +15,7 @@ import univ.lecture.riotapi.model.JSONResult;
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Map;
 
 /**
@@ -33,7 +34,7 @@ public class RiotApiController {
     @Value("${riot.api.key}")
     private String riotApiKey;
 
-    @RequestMapping(value = "/summoner/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/summoner/{name}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public JSONResult queryResult(@PathVariable("name") String expression) throws UnsupportedEncodingException {
         final String url = riotApiEndpoint + "/summoner/by-name/" +
         		expression +
@@ -54,9 +55,10 @@ public class RiotApiController {
         mathResult = app.getResult();
         
         /* 현재를 나타내는 시간값을 long형으로 반환 */
-		DateFormat dateFormat = new SimpleDateFormat("YYYYHHmmss");
-		String str = dateFormat.format(System.currentTimeMillis());
-		long now = Long.parseLong(str);
+		DateFormat dateFormat = new SimpleDateFormat("yyyyMMddkkmm");
+		String strTime = dateFormat.format((Calendar.getInstance()).getTime());
+		long now = Long.parseLong(strTime);
+		System.out.println(now);
 		
 		JSONResult result = new JSONResult(teamId, now, mathResult);
 
