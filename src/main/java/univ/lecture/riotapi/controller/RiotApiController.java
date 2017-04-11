@@ -43,7 +43,7 @@ public class RiotApiController {
         final int teamId = 8; //조번호(8조) 
         double mathResult;
         
-        String response = restTemplate.postForObject(url, null, String.class);
+        //String response = restTemplate.postForObject(url, null, String.class);
         //Map<String, Object> parsedMap = new JacksonJsonParser().parseMap(response);
         //parsedMap.forEach((key, value) -> log.info(String.format("key [%s] type [%s] value [%s]", key, value.getClass(), value)));
         //Map<String, Object> summonerDetail = (Map<String, Object>) parsedMap.values().toArray()[0];
