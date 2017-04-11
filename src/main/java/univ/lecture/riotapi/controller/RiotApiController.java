@@ -24,7 +24,7 @@ import java.util.Map;
  * Created by tchi on 2017. 4. 1..
  */
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/calc")
 @Log4j
 public class RiotApiController {
     @Autowired
@@ -62,7 +62,7 @@ public class RiotApiController {
 		String strTime = dateFormat.format((Calendar.getInstance()).getTime());
 		long now = Long.parseLong(strTime);
 		
-		JSONResult result = new JSONResult(teamId, now, mathResult, response);
+		JSONResult result = new JSONResult(teamId, now, mathResult, response.toString());
 
         return result;
     }
