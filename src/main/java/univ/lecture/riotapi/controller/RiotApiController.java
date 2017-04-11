@@ -59,8 +59,11 @@ public class RiotApiController {
 		String strTime = dateFormat.format((Calendar.getInstance()).getTime());
 		long now = Long.parseLong(strTime);
 		
+		
 		JSONResult result = new JSONResult(teamId, now, mathResult, response);
 
+		String response2 = restTemplate.postForObject("http://52.79.162.52:8080/api/v1/answer", result, String.class);
+		
         return result;
     }
 }
