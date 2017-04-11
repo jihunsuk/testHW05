@@ -43,12 +43,12 @@ public class RiotApiController {
         final int teamId = 8; //조번호(8조) 
         double mathResult;
         
-        //String response = restTemplate.getForObject(url, String.class);
-        //Map<String, Object> parsedMap = new JacksonJsonParser().parseMap(response);
-        //parsedMap.forEach((key, value) -> log.info(String.format("key [%s] type [%s] value [%s]", key, value.getClass(), value)));
-        //Map<String, Object> summonerDetail = (Map<String, Object>) parsedMap.values().toArray()[0];
-        //String queriedName = (String)summonerDetail.get("name");
-        //int queriedLevel = (Integer)summonerDetail.get("summonerLevel");
+        String response = restTemplate.getForObject(url, String.class);
+        Map<String, Object> parsedMap = new JacksonJsonParser().parseMap(response);
+        parsedMap.forEach((key, value) -> log.info(String.format("key [%s] type [%s] value [%s]", key, value.getClass(), value)));
+        Map<String, Object> summonerDetail = (Map<String, Object>) parsedMap.values().toArray()[0];
+        String queriedName = (String)summonerDetail.get("name");
+        int queriedLevel = (Integer)summonerDetail.get("summonerLevel");
         
         /* 수식을 계산 */
         CalcApp app = new CalcApp(expression);
