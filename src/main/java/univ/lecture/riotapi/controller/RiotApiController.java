@@ -58,9 +58,8 @@ public class RiotApiController {
 		DateFormat dateFormat = new SimpleDateFormat("yyyyMMddkkmm");
 		String strTime = dateFormat.format((Calendar.getInstance()).getTime());
 		long now = Long.parseLong(strTime);
-		System.out.println(now);
 		
-		JSONResult result = new JSONResult(teamId, now, mathResult, "response here");
+		JSONResult result = new JSONResult(teamId, now, mathResult);
 
         return result;
     }
