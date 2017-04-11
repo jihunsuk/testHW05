@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Summoner {
+public class Result {
+	private int teamId;
+	private long now;
     private double result;
 }

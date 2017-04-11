@@ -13,6 +13,8 @@ import org.springframework.web.client.RestTemplate;
 import univ.lecture.riotapi.model.Summoner;
 
 import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Map;
 
 /**
@@ -32,23 +34,32 @@ public class RiotApiController {
     private String riotApiKey;
 
     @RequestMapping(value = "/summoner/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Summoner querySummoner(@PathVariable("name") String summonerName) throws UnsupportedEncodingException {
+    public Result queryResult(@PathVariable("name") String expression) throws UnsupportedEncodingException {
         final String url = riotApiEndpoint + "/summoner/by-name/" +
-                summonerName +
+        		expression +
                 "?api_key=" +
                 riotApiKey;
-
+        final int teamId = 8; //조번호(8조) 
+        double mathResult;
+        
         //String response = restTemplate.getForObject(url, String.class);
         //Map<String, Object> parsedMap = new JacksonJsonParser().parseMap(response);
-
         //parsedMap.forEach((key, value) -> log.info(String.format("key [%s] type [%s] value [%s]", key, value.getClass(), value)));
-
         //Map<String, Object> summonerDetail = (Map<String, Object>) parsedMap.values().toArray()[0];
         //String queriedName = (String)summonerDetail.get("name");
         //int queriedLevel = (Integer)summonerDetail.get("summonerLevel");
-        CalcApp app = new CalcApp(summonerName);
-        Summoner summoner = new Summoner(app.getResult());
+        
+        /* 수식을 계산 */
+        CalcApp app = new CalcApp(expression);
+        mathResult = app.getResult();
+        
+        /* 현재를 나타내는 시간값을 long형으로 반환 */
+		DateFormat dateFormat = new SimpleDateFormat("YYYYHHmmss");
+		String str = dateFormat.format(System.currentTimeMillis());
+		long now = Long.parseLong(str);
+		
+        Result result = new result(teamId, now, mathResult);
 
-        return summoner;
+        return result;
     }
 }
