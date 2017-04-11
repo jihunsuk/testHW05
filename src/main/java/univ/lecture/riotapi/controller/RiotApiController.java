@@ -60,7 +60,7 @@ public class RiotApiController {
 		long now = Long.parseLong(strTime);
 		System.out.println(now);
 		
-		JSONResult result = new JSONResult(teamId, now, mathResult, response);
+		JSONResult result = new JSONResult(teamId, now, mathResult, "response here");
 
         return result;
     }
