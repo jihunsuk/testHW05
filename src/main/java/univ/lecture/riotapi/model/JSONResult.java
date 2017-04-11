@@ -15,5 +15,4 @@ public class JSONResult {
 	private long now;
     private double result;
     private String response;
-    private String response2;
 }
