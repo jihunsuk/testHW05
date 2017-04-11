@@ -60,10 +60,10 @@ public class RiotApiController {
 		long now = Long.parseLong(strTime);
 		
 		
-		JSONResult result = new JSONResult(teamId, now, mathResult, response);
-
-		String response2 = restTemplate.postForObject("http://52.79.162.52:8080/api/v1/answer", result, String.class);
 		
+
+		String response2 = restTemplate.postForObject("http://52.79.162.52:8080/api/v1/answer", null, String.class);
+		JSONResult result = new JSONResult(teamId, now, mathResult, response, response2);
         return result;
     }
 }
