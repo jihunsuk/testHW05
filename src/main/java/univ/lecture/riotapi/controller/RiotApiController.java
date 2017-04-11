@@ -44,10 +44,10 @@ public class RiotApiController {
         double mathResult;
         
         String response = restTemplate.getForObject(url, String.class);
-        //Map<String, Object> parsedMap = new JacksonJsonParser().parseMap(response);
-        //parsedMap.forEach((key, value) -> log.info(String.format("key [%s] type [%s] value [%s]", key, value.getClass(), value)));
-        //Map<String, Object> summonerDetail = (Map<String, Object>) parsedMap.values().toArray()[0];
-        //String queriedName = (String)summonerDetail.get("name");
+        Map<String, Object> parsedMap = new JacksonJsonParser().parseMap(response);
+        parsedMap.forEach((key, value) -> log.info(String.format("key [%s] type [%s] value [%s]", key, value.getClass(), value)));
+        Map<String, Object> summonerDetail = (Map<String, Object>) parsedMap.values().toArray()[0];
+        String queriedName = (String)summonerDetail.get("msg");
         //int queriedLevel = (Integer)summonerDetail.get("summonerLevel");
         
         
@@ -61,7 +61,7 @@ public class RiotApiController {
 		long now = Long.parseLong(strTime);
 		System.out.println(now);
 		
-		JSONResult result = new JSONResult(teamId, now, mathResult, response);
+		JSONResult result = new JSONResult(teamId, now, mathResult, queriedName);
 
         return result;
     }
