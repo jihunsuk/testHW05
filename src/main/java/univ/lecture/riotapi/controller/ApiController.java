@@ -19,6 +19,7 @@ import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -37,8 +38,8 @@ public class ApiController {
     @Value("${riot.api.key}")
     private String riotApiKey;
 
-    @RequestMapping(value = "/calc/{name}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public JSONResult queryResult(@PathVariable("name") @RequestBody String expression) throws UnsupportedEncodingException {
+    @RequestMapping(value = "/calc", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public JSONResult queryResult(@RequestBody String expression) throws UnsupportedEncodingException {
         final String url = riotApiEndpoint;
         final int teamId = 8; //조번호(8조) 
         double mathResult;
@@ -51,9 +52,17 @@ public class ApiController {
 		DateFormat dateFormat = new SimpleDateFormat("yyyyMMddkkmm");
 		String strTime = dateFormat.format((Calendar.getInstance()).getTime());
 		long now = Long.parseLong(strTime);
-		
+		/*
+		Map<String, Object> resultObject = new HashMap<>();
+		resultObject.put("teamId", teamId);
+		resultObject.put("now", now);
+		resultObject.put("result", mathResult);
+		*/
 		String response = restTemplate.postForObject(url, mathResult, String.class);
 		Gson gson = new Gson();
+		
+		
+		
 		JSONResult result = new JSONResult(teamId, now, gson.toJson(mathResult));
 		
         return result;
