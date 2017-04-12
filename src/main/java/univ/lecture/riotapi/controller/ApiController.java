@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.google.gson.Gson;
+
 import ch.qos.logback.classic.Logger;
 import univ.lecture.riotapi.model.JSONResult;
 
@@ -60,8 +62,8 @@ public class ApiController {
 		long now = Long.parseLong(strTime);
 		
 		String response = restTemplate.postForObject(url, mathResult, String.class);
-		
-		JSONResult result = new JSONResult(teamId, now, mathResult, response);
+		Gson gson = new Gson();
+		JSONResult result = new JSONResult(teamId, now, gson.toJson(mathResult), response);
 		
         return result;
         
