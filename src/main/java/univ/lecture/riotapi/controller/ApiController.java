@@ -1,7 +1,6 @@
 package univ.lecture.riotapi.controller;
 
 import lombok.extern.log4j.Log4j;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.json.JacksonJsonParser;
@@ -13,12 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-
 import com.google.gson.Gson;
-
 import ch.qos.logback.classic.Logger;
 import univ.lecture.riotapi.model.JSONResult;
-
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -47,7 +43,6 @@ public class ApiController {
         final int teamId = 8; //조번호(8조) 
         double mathResult;
         
-        
         /* 수식을 계산 */
         CalcApp app = new CalcApp(expression);
         mathResult = app.getResult();
@@ -59,9 +54,8 @@ public class ApiController {
 		
 		String response = restTemplate.postForObject(url, mathResult, String.class);
 		Gson gson = new Gson();
-		JSONResult result = new JSONResult(teamId, now, gson.toJson(mathResult), response);
+		JSONResult result = new JSONResult(teamId, now, gson.toJson(mathResult));
 		
         return result;
-        
     }
 }

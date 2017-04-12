@@ -14,5 +14,4 @@ public class JSONResult {
 	private int teamId;
 	private long now;
     private String result;
-    private String response;
 }
