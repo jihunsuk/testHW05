@@ -42,7 +42,7 @@ public class ApiController {
     private String riotApiKey;
 
     @RequestMapping(value = "/calc", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public JSONResult queryResult(@RequestParam(value = "name") @PathVariable("name") @RequestBody String expression) throws UnsupportedEncodingException {
+    public JSONResult queryResult(@RequestParam(value = "name", required = false) @PathVariable("name") @RequestBody String expression) throws UnsupportedEncodingException {
         final String url = riotApiEndpoint;
         final int teamId = 8; //조번호(8조) 
         double mathResult;
