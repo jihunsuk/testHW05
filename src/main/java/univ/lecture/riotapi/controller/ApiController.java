@@ -41,18 +41,11 @@ public class ApiController {
     @Value("${riot.api.key}")
     private String riotApiKey;
 
-    @RequestMapping(value = "/calc/{name}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public JSONResult queryResult(@PathVariable("name") @RequestBody String expression) throws UnsupportedEncodingException {
+    @RequestMapping(value = "/calc", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public JSONResult queryResult( @RequestBody String expression) throws UnsupportedEncodingException {
         final String url = riotApiEndpoint;
         final int teamId = 8; //조번호(8조) 
         double mathResult;
-        
-        
-        //Map<String, Object> parsedMap = new JacksonJsonParser().parseMap(response);
-        //parsedMap.forEach((key, value) -> log.info(String.format("key [%s] type [%s] value [%s]", key, value.getClass(), value)));
-        //Map<String, Object> summonerDetail = (Map<String, Object>) parsedMap.values().toArray()[0];
-        //String queriedName = (String)summonerDetail.get("response");
-        //int queriedLevel = (Integer)summonerDetail.get("result");
         
         /* 수식을 계산 */
         CalcApp app = new CalcApp(expression);
