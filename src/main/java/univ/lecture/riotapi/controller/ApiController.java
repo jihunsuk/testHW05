@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -41,7 +42,7 @@ public class ApiController {
     private String riotApiKey;
 
     @RequestMapping(value = "/calc", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public JSONResult queryResult(@PathVariable("name") @RequestBody String expression) throws UnsupportedEncodingException {
+    public JSONResult queryResult(@RequestParam(value = "name") @PathVariable("name") @RequestBody String expression) throws UnsupportedEncodingException {
         final String url = riotApiEndpoint;
         final int teamId = 8; //조번호(8조) 
         double mathResult;
